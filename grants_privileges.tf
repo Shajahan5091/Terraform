@@ -220,6 +220,16 @@ resource "snowflake_grant_privileges_to_account_role" "Data_Engineer_create_pipe
   }
 }
 
+resource "snowflake_grant_privileges_to_account_role" "Data_Engineer_usage_on_integration" {
+  provider          = snowflake.account_admin
+  privileges        = ["USAGE"]
+  account_role_name = snowflake_account_role.Engineer.name
+  on_account_object {
+    object_type = "INTEGRATION"
+    object_name = snowflake_storage_integration.gcs_integration.name
+  }
+}
+
 # For Data Architect
 resource "snowflake_grant_privileges_to_account_role" "Data_Architect_create_schema" {
   privileges        = ["CREATE SCHEMA"]
