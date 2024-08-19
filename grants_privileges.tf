@@ -188,7 +188,7 @@ resource "snowflake_grant_privileges_to_account_role" "Pipeline_Operator_usage_o
   privileges        = ["USAGE"]
   account_role_name =snowflake_account_role.Pipeline.name
   on_account_object {
-    object_type = "DATABASE"
+    object_type = "DATABASE"    
     object_name = snowflake_database.ETL.name
   }
 }
